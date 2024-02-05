@@ -16,13 +16,6 @@ module.exports = {
         new HTMLWebpackPlugin({
             template: './src/index.html'
         }),
-        new webpack.DefinePlugin({
-            "process.env.REACT_APP_PASSWORD": JSON.stringify("rdr19p5feb"),
-            "process.env.REACT_APP_USER": JSON.stringify("uzytkownik"),
-            "process.env.REACT_APP_HOST": JSON.stringify("http://localhost:3000/"),
-            "process.env.REACT_APP_LFMUSERNAME": JSON.stringify("Reskim"),
-            "process.env.REACT_APP_LFMAPIKEY": JSON.stringify("7eb3c16299dd6d82b6742b2d26d6ec55")
-        })
     ],
     module: {
         rules: [
