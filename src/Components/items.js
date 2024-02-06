@@ -1,6 +1,5 @@
 require('dotenv').config();
 import React, { useState, useEffect } from 'react';
-import ProgressBar from './progressBar';
 import LikeDislikeManager from './api.js';
 
 let equal;

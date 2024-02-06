@@ -23,7 +23,7 @@ const SearchBar = ({ elements, setSearchResults }) => {
 
     useEffect(() => {
         if (selectedFilter === 0) {
-            setFilteredArray(elements); // Ustaw całą tablicę elements jako filteredArray
+            setFilteredArray(elements);
         }
     }, [selectedFilter, elements]);
 

@@ -13,7 +13,6 @@ const ListPage = ({ searchResults, loaded, elements, number }) => {
   const pagesVisited = pageNumber * resultsPerPage;
   const refreshData = async () => {
     try {
-      // Pozyskaj najnowsze dane
       const get = await getElements();
       console.log(get);
       setData(get);
@@ -60,7 +59,6 @@ const ListPage = ({ searchResults, loaded, elements, number }) => {
   }, [searchResults]);
 
   useEffect(() => {
-    // console.log("Number2: ", number);
     if (number === 1) {
       setPageNumber(previousPageCount);
     };

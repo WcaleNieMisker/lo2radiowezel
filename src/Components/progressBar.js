@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { getElements } from './axios.js';
 
 const ProgressBar = ({ item, refresh }) => {
     const [likes, setLikes] = useState(item.likes);

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
+require('dotenv').config();
 
 const fetchData = async (updateLfmData, setLoadingText) => {
   try {
-    const response = await fetch('http://localhost:3000/spotify');
+    const response = await fetch(process.env.REACT_APP_HOST + 'spotify');
     if (response.ok) {
       const data = await response.json();
       updateLfmData(data);
@@ -14,7 +15,7 @@ const fetchData = async (updateLfmData, setLoadingText) => {
     console.error(error.message);
     updateLfmData({ error: 'Ups! Coś poszło nie tak!' });
   } finally {
-    setLoadingText(''); // Clear loading text regardless of success or failure
+    setLoadingText('');
   }
 };
 

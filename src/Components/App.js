@@ -1,5 +1,5 @@
 import React, { Component, useState, useEffect } from 'react';
-import './api';
+// import './api';
 import SearchBar from './SearchBar.js';
 import { getElements } from './axios.js'
 import ListPage from './songsWithPagination.js';
@@ -49,12 +49,10 @@ function App(){
     useEffect(() => {
         if (searchResults.length === 0) {
             setPageNumber(1)
-            // console.log("Number: ", pageNumber)
         }
     }, [searchResults]);
 
     useEffect(() => {
-        // console.log("Number2: ", pageNumber);
         if (pageNumber === 1) {
           setPageNumber(prevPage => {
             if (prevPage >= Math.ceil(searchResults.length / 9)) {
@@ -195,7 +193,6 @@ function App(){
                     </div>
                     </div>
                 </footer>
-                <script src="script.js" defer></script>
             </div>
     )
 }

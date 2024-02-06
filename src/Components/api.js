@@ -1,6 +1,5 @@
 require('dotenv').config();
 import React, { useState, useEffect } from 'react';
-import ProgressBar from './progressBar';
 import { getElements, updateElement } from './axios';
 
 class LikeDislikeManager extends React.Component {
@@ -44,7 +43,6 @@ class LikeDislikeManager extends React.Component {
     }  
 
     componentDidUpdate(prevProps) {
-        // Sprawdź, czy propsy się zmieniły (np. załadowano nowe elementy)
         if (prevProps.refresh !== this.props.refresh) {
             const { refresh, item } = this.props;
             refresh.forEach((element) => {
@@ -53,8 +51,8 @@ class LikeDislikeManager extends React.Component {
                         likes: element.likes,
                         dislikes: element.dislikes,
                         elements: refresh,
-                        likeSave: prevState.likeSave, // Zachowaj poprzedni stan "likeSave"
-                        dislikeSave: prevState.dislikeSave, // Zachowaj poprzedni stan "dislikeSave"
+                        likeSave: prevState.likeSave,
+                        dislikeSave: prevState.dislikeSave,
                     }));
                 }
             })
@@ -63,7 +61,6 @@ class LikeDislikeManager extends React.Component {
 
     refreshData = async () => {
         try {
-          // Pozyskaj najnowsze dane
             const get = await getElements();
           const { item } = this.props;
           const updatedItem = get.find((el) => el.song_id === item.song_id);
@@ -108,24 +105,18 @@ class LikeDislikeManager extends React.Component {
             var get = await getElements();
             elements = get;
             const item = elements.find((el) => el.song_id === itemId);
-            if (!item) return; // Jeśli nie znaleziono elementu o podanym itemId, zakończ funkcję
+            if (!item) return;
             
             if (event.target.checked && secButton === true) {
-                // Zmniejsz liczbę dislikes i zwiększ liczbę likes o 1
                 item.dislikes -= 1;
                 item.likes += 1;
-                // Wyślij żądanie PUT do serwera, aby zaktualizować liczbę dislikes i likes
                 const data = { likes: item.likes, dislikes: item.dislikes };
                 await updateElement(item._id.toString(), data);
           } else if (event.target.checked && secButton === false) {
-                // Zwiększ liczbę likes o 1
                 item.likes += 1;
-                // Wyślij żądanie PUT do serwera, aby zaktualizować liczbę likes
                 const data = { likes: item.likes };
                 await updateElement(item._id.toString(), data);
           }
-      
-          // Zaktualizuj stan komponentu
             this.setState({ likes: item.likes, dislikes: item.dislikes });
             this.refreshData();
         } catch (error) {
@@ -140,24 +131,18 @@ class LikeDislikeManager extends React.Component {
             var get = await getElements();  
             elements = get;
             const item = elements.find((el) => el.song_id === itemId);
-            if (!item) return; // Jeśli nie znaleziono elementu o podanym itemId, zakończ funkcję
+            if (!item) return;
         
             if (event.target.checked && secButton === true) {
-                // Zmniejsz liczbę likes i zwiększ liczbę dislikes o 1
                 item.likes -= 1;
                 item.dislikes += 1;
-                // Wyślij żądanie PUT do serwera, aby zaktualizować liczbę dislikes i likes
                 const data = { likes: item.likes, dislikes: item.dislikes };
                 await updateElement(item._id.toString(), data);
             } else if (event.target.checked && secButton === false) {
-                // Zwiększ liczbę dislikes o 1
                 item.dislikes += 1;
-                // Wyślij żądanie PUT do serwera, aby zaktualizować liczbę dislikes
                 const data = { dislikes: item.dislikes };
                 await updateElement(item._id.toString(), data);
             }
-        
-            // Zaktualizuj stan komponentu
             this.setState({ likes: item.likes, dislikes: item.dislikes });
             this.refreshData();
         } catch (error) {

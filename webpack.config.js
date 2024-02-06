@@ -2,6 +2,7 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
 var webpack = require('webpack');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
     entry: './src/index.js',
@@ -16,6 +17,11 @@ module.exports = {
         new HTMLWebpackPlugin({
             template: './src/index.html'
         }),
+        new Dotenv({
+            path: './.env',
+            safe: true,
+            systemvars: true
+        })
     ],
     module: {
         rules: [
