@@ -1,5 +1,4 @@
 import React, { Component, useState, useEffect } from 'react';
-// import './api';
 import SearchBar from './SearchBar.js';
 import { getElements } from './axios.js'
 import ListPage from './songsWithPagination.js';
