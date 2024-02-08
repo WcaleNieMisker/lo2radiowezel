@@ -4,3 +4,4 @@ valid_data.json
 .cache
 dataUploader
 server
+package-lock.json
